@@ -84,28 +84,32 @@ body {
   animation: fade 0.6s forwards;
 }
 
+/* Mengatur urutan munculnya kartu */
 .menu-item:nth-child(1){animation-delay:0.1s;}
 .menu-item:nth-child(2){animation-delay:0.2s;}
 .menu-item:nth-child(3){animation-delay:0.3s;}
 .menu-item:nth-child(4){animation-delay:0.4s;}
-.menu-item:nth-child(5){animation-delay:0.5s;}
 
 .menu-item:hover {
   transform: translateY(-8px);
   border-color: var(--primary);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
 }
 
 .icon {
   font-size: 30px;
+  margin-bottom: 10px;
 }
 
 .menu-item h3 {
   color: var(--primary);
+  margin: 10px 0;
 }
 
 .menu-item p {
   font-size: 0.85rem;
   color: var(--text-muted);
+  margin: 0;
 }
 
 @keyframes fade {
@@ -121,6 +125,7 @@ body {
   font-size: 0.8rem;
   color: #666;
   text-align: center;
+  line-height: 1.5;
 }
 </style>
 </head>
@@ -155,20 +160,23 @@ body {
   <a href="https://mamank757.github.io/dosis" class="menu-item">
     <div class="icon">🧪</div>
     <h3>Kalkulator Dosis Pupuk Nasional</h3>
-    <p>Hitung kebutuhan pupuk berdasarkan rekomendasi.</p>
+    <p>Hitung kebutuhan pupuk rekomendasi.</p>
+  </a>
+
+  <a href="https://mamank757.github.io/iklim" class="menu-item">
+    <div class="icon">🌍</div>
+    <h3>Data Iklim & Prediksi Cuaca</h3>
+    <p>Pantau curah hujan & suhu wilayah.</p>
   </a>
 
 </div>
 
 <div class="footer">
   © 2026 Dibuat oleh: <br>
-  King Mamank • PPL Bola - Kab. Wajo
+  <strong>King Mamank</strong> • PPL Bola - Kab. Wajo
 </div>
 
 <script>
-// =======================
-// AMBIL LOKASI
-// =======================
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, errorLocation);
@@ -180,10 +188,7 @@ function getLocation() {
 function showPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-
-  document.getElementById("lokasi").innerText =
-    lat.toFixed(2) + ", " + lon.toFixed(2);
-
+  document.getElementById("lokasi").innerText = lat.toFixed(2) + ", " + lon.toFixed(2);
   getCuaca(lat, lon);
 }
 
@@ -193,9 +198,6 @@ function errorLocation() {
   document.getElementById("musim").innerText = "Tidak diketahui";
 }
 
-// =======================
-// DETEKSI MUSIM
-// =======================
 function getMusim(data) {
   let bulan = new Date().getMonth() + 1;
   let kelembapan = data.main.humidity;
@@ -210,9 +212,6 @@ function getMusim(data) {
   }
 }
 
-// =======================
-// AMBIL CUACA
-// =======================
 function getCuaca(lat, lon) {
   let apiKey = "a6da7e4d60b79f9bc5e5a35f7ccc5885";
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=id`;
@@ -220,42 +219,21 @@ function getCuaca(lat, lon) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      console.log("DATA CUACA:", data);
-
       if (data.cod !== 200) {
         document.getElementById("cuaca").innerText = "Error API";
         return;
       }
-
       let cuaca = data.weather[0].description;
       let suhu = data.main.temp;
-
-      document.getElementById("cuaca").innerText =
-        cuaca + " (" + suhu + "°C)";
-
-      // DETEKSI MUSIM
-      let musim = getMusim(data);
-      document.getElementById("musim").innerText = musim;
-
-      // WARNING PERTANIAN
-      if (cuaca.includes("hujan")) {
-        alert("⚠️ Sedang hujan, tunda pemupukan!");
-      }
-
-      if (musim.includes("Kemarau")) {
-        alert("💧 Musim kemarau, perhatikan irigasi!");
-      }
+      document.getElementById("cuaca").innerText = cuaca + " (" + suhu + "°C)";
+      document.getElementById("musim").innerText = getMusim(data);
     })
     .catch(err => {
-      console.log(err);
       document.getElementById("cuaca").innerText = "Gagal";
       document.getElementById("musim").innerText = "Error";
     });
 }
 
-// =======================
-// START
-// =======================
 window.onload = function () {
   getLocation();
 };
