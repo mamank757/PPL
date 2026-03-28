@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPL Super App - Indonesia</title>
+
+<style>
+:root {
+  --primary: #81c784;
+  --bg-dark: #121212;
+  --card-dark: #1e1e1e;
+  --text-main: #e0e0e0;
+  --text-muted: #b0b0b0;
+  --accent-green: #2e7d32;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 40px 20px;
+  width: 100%;
+  background: linear-gradient(180deg, #1b5e20, #121212);
+}
+
+.header h1 {
+  margin: 0;
+  color: white;
+}
+
+.header p {
+  color: var(--primary);
+}
+
+/* DASHBOARD */
+.dashboard {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.badge {
+  background: var(--primary);
+  color: black;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* MENU */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  width: 90%;
+  padding: 20px;
+}
+
+.menu-item {
+  background: var(--card-dark);
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  border: 1px solid #333;
+  transition: 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade 0.6s forwards;
+}
+
+.menu-item:nth-child(1){animation-delay:0.1s;}
+.menu-item:nth-child(2){animation-delay:0.2s;}
+.menu-item:nth-child(3){animation-delay:0.3s;}
+.menu-item:nth-child(4){animation-delay:0.4s;}
+.menu-item:nth-child(5){animation-delay:0.5s;}
+
+.menu-item:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary);
+}
+
+.icon {
+  font-size: 30px;
+}
+
+.menu-item h3 {
+  color: var(--primary);
+}
+
+.menu-item p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+@keyframes fade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* FOOTER */
+.footer {
+  padding: 30px;
+  font-size: 0.8rem;
+  color: #666;
+  text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>🌾 PPL DIGITAL HUB</h1>
+  <p>Dari perencanaan hingga panen dalam satu aplikasi</p>
+
+  <div class="dashboard">
+    <div class="badge">🌦️ Cuaca: <span id="cuaca">Loading...</span></div>
+    <div class="badge">📍 Lokasi: <span id="lokasi">Loading...</span></div>
+    <div class="badge">📅 Musim: <span id="musim">Loading...</span></div>
+  </div>
+</div>
+
+<div class="menu-grid">
+
+  <a href="https://mamank757.github.io/EvidenLCS" class="menu-item">
+    <div class="icon">📝</div>
+    <h3>Eviden LCS</h3>
+    <p>Laporan penyuluhan digital.</p>
+  </a>
+
+  <a href="https://mamank757.github.io/padi" class="menu-item">
+    <div class="icon">🌾</div>
+    <h3>Fase Padi PRO</h3>
+    <p>Jadwal pemupukan & panen.</p>
+  </a>
+
+  <a href="https://mamank757.github.io/dosis" class="menu-item">
+    <div class="icon">🧪</div>
+    <h3>Dosis Pupuk</h3>
+    <p>Hitung kebutuhan pupuk.</p>
+  </a>
+
+</div>
+
+<div class="footer">
+  © 2026 PPL Digital Indonesia <br>
+  Pertanian Presisi • Indonesia Maju
+</div>
+
+<script>
+// =======================
+// AMBIL LOKASI
+// =======================
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition, errorLocation);
+  } else {
+    document.getElementById("lokasi").innerText = "Tidak didukung";
+  }
+}
+
+function showPosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+
+  document.getElementById("lokasi").innerText =
+    lat.toFixed(2) + ", " + lon.toFixed(2);
+
+  getCuaca(lat, lon);
+}
+
+function errorLocation() {
+  document.getElementById("lokasi").innerText = "Izin ditolak";
+  document.getElementById("cuaca").innerText = "Tidak tersedia";
+  document.getElementById("musim").innerText = "Tidak diketahui";
+}
+
+// =======================
+// DETEKSI MUSIM
+// =======================
+function getMusim(data) {
+  let bulan = new Date().getMonth() + 1;
+  let kelembapan = data.main.humidity;
+  let kondisi = data.weather[0].main.toLowerCase();
+
+  if (kondisi.includes("rain") || kelembapan > 80) {
+    return "Musim Hujan (MH)";
+  } else if (kelembapan < 60 && (bulan >= 5 && bulan <= 9)) {
+    return "Musim Kemarau (MK)";
+  } else {
+    return "Pancaroba";
+  }
+}
+
+// =======================
+// AMBIL CUACA
+// =======================
+function getCuaca(lat, lon) {
+  let apiKey = "a6da7e4d60b79f9bc5e5a35f7ccc5885";
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=id`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      console.log("DATA CUACA:", data);
+
+      if (data.cod !== 200) {
+        document.getElementById("cuaca").innerText = "Error API";
+        return;
+      }
+
+      let cuaca = data.weather[0].description;
+      let suhu = data.main.temp;
+
+      document.getElementById("cuaca").innerText =
+        cuaca + " (" + suhu + "°C)";
+
+      // DETEKSI MUSIM
+      let musim = getMusim(data);
+      document.getElementById("musim").innerText = musim;
+
+      // WARNING PERTANIAN
+      if (cuaca.includes("hujan")) {
+        alert("⚠️ Sedang hujan, tunda pemupukan!");
+      }
+
+      if (musim.includes("Kemarau")) {
+        alert("💧 Musim kemarau, perhatikan irigasi!");
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      document.getElementById("cuaca").innerText = "Gagal";
+      document.getElementById("musim").innerText = "Error";
+    });
+}
+
+// =======================
+// START
+// =======================
+window.onload = function () {
+  getLocation();
+};
+</script>
+
+</body>
+</html>
