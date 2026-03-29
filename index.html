@@ -84,6 +84,32 @@ body {
   animation: fade 0.6s forwards;
 }
 
+/* TOMBOL MEMANJANG (LCS LINK) */
+.full-width-btn {
+  grid-column: 1 / -1; /* Membuat tombol memanjang memenuhi baris */
+  background: linear-gradient(90deg, var(--accent-green), #1b5e20);
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  border: 1px solid var(--primary);
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  animation: fade 0.6s forwards;
+  animation-delay: 0.15s;
+}
+
+.full-width-btn:hover {
+  background: var(--primary);
+  color: black;
+  transform: scale(1.02);
+}
+
 /* Mengatur urutan munculnya kartu */
 .menu-item:nth-child(1){animation-delay:0.1s;}
 .menu-item:nth-child(2){animation-delay:0.2s;}
@@ -148,7 +174,11 @@ body {
   <a href="https://mamank757.github.io/EvidenLCS" class="menu-item">
     <div class="icon">📝</div>
     <h3>Laporan Eviden LCS penyuluh</h3>
-    <p>masih dalam pengembangan, silakan gunakan web url di www.bppbola.my.id.</p>
+    <p>masih dalam pengembangan, silakan gunakan web url di www.bppbola.my.id. atau Klik Buka Akses Cepat di bawah!</p>
+  </a>
+
+  <a href="https://mamank757.github.io/LCS/" class="full-width-btn">
+    <span>🚀</span> BUKA AKSES CEPAT LAPORAN LCS
   </a>
 
   <a href="https://mamank757.github.io/padi" class="menu-item">
@@ -177,6 +207,7 @@ body {
 </div>
 
 <script>
+// (Script JavaScript tetap sama seperti sebelumnya)
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, errorLocation);
