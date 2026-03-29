@@ -60,7 +60,7 @@ body {
   font-weight: bold;
 }
 
-/* MENU */
+/* MENU GRID */
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -70,6 +70,39 @@ body {
   padding: 20px;
 }
 
+/* TOMBOL UTAMA LCS (PENGGANTI MENU) */
+.lcs-btn {
+  grid-column: 1 / -1;
+  background: linear-gradient(90deg, #2e7d32, #1b5e20);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  border: 1px solid var(--primary);
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column; /* Membuat teks di bawah ikon */
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  animation: fade 0.6s forwards;
+}
+
+.lcs-btn:hover {
+  background: var(--primary);
+  color: #121212;
+  transform: scale(1.02);
+}
+
+.lcs-btn small {
+  font-weight: normal;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+/* ITEM MENU BIASA */
 .menu-item {
   background: var(--card-dark);
   padding: 25px;
@@ -83,38 +116,6 @@ body {
   transform: translateY(20px);
   animation: fade 0.6s forwards;
 }
-
-/* TOMBOL MEMANJANG (LCS LINK) */
-.full-width-btn {
-  grid-column: 1 / -1; /* Membuat tombol memanjang memenuhi baris */
-  background: linear-gradient(90deg, var(--accent-green), #1b5e20);
-  padding: 15px;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  border: 1px solid var(--primary);
-  transition: 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  animation: fade 0.6s forwards;
-  animation-delay: 0.15s;
-}
-
-.full-width-btn:hover {
-  background: var(--primary);
-  color: black;
-  transform: scale(1.02);
-}
-
-/* Mengatur urutan munculnya kartu */
-.menu-item:nth-child(1){animation-delay:0.1s;}
-.menu-item:nth-child(2){animation-delay:0.2s;}
-.menu-item:nth-child(3){animation-delay:0.3s;}
-.menu-item:nth-child(4){animation-delay:0.4s;}
 
 .menu-item:hover {
   transform: translateY(-8px);
@@ -163,40 +164,36 @@ body {
   <p>Pelaporan, perencanaan hingga panen dalam satu aplikasi</p>
 
   <div class="dashboard">
-    <div class="badge">🌦️ Cuaca: <span id="cuaca">Loading...</span></div>
-    <div class="badge">📍 Lokasi Anda: <span id="lokasi">Loading...</span></div>
-    <div class="badge">📅 Musim: <span id="musim">Loading...</span></div>
+    <div class="badge">🌦️ <span id="cuaca">Loading...</span></div>
+    <div class="badge">📍 <span id="lokasi">Loading...</span></div>
+    <div class="badge">📅 <span id="musim">Loading...</span></div>
   </div>
 </div>
 
 <div class="menu-grid">
 
-  <a href="https://mamank757.github.io/EvidenLCS" class="menu-item">
+  <a href="https://mamank757.github.io/LCS/" class="lcs-btn">
     <div class="icon">📝</div>
-    <h3>Laporan Eviden LCS penyuluh</h3>
-    <p>masih dalam pengembangan, silakan gunakan web url di www.bppbola.my.id. atau Klik Buka Akses Cepat di bawah!</p>
+    <span>LAPORAN EVIDEN LCS PENYULUH</span>
+    <small>Klik untuk akses cepat sistem pelaporan</small>
   </a>
 
-  <a href="https://mamank757.github.io/LCS/" class="full-width-btn">
-    <span>🚀</span> BUKA AKSES CEPAT LAPORAN LCS
-  </a>
-
-  <a href="https://mamank757.github.io/padi" class="menu-item">
+  <a href="https://mamank757.github.io/padi" class="menu-item" style="animation-delay: 0.1s;">
     <div class="icon">🌾</div>
-    <h3>Kalkulator Fase Pertumbuhan Padi</h3>
-    <p>Jadwal pemupukan & panen.</p>
+    <h3>Kalkulator Fase Padi</h3>
+    <p>Pantau jadwal pemupukan & panen.</p>
   </a>
 
-  <a href="https://mamank757.github.io/dosis" class="menu-item">
+  <a href="https://mamank757.github.io/dosis" class="menu-item" style="animation-delay: 0.2s;">
     <div class="icon">🧪</div>
-    <h3>Kalkulator Dosis Pupuk Nasional</h3>
-    <p>Hitung kebutuhan pupuk sesuai rekomendasi.</p>
+    <h3>Kalkulator Dosis Pupuk</h3>
+    <p>Hitung kebutuhan pupuk nasional.</p>
   </a>
 
-  <a href="https://mamank757.github.io/iklim" class="menu-item">
+  <a href="https://mamank757.github.io/iklim" class="menu-item" style="animation-delay: 0.3s;">
     <div class="icon">🌍</div>
-    <h3>Data Iklim El Nino dan La Nina</h3>
-    <p>Pantau data iklim dan cuaca dari analisis BOM.GOV.AU.</p>
+    <h3>Data Iklim & Cuaca</h3>
+    <p>Analisis El Nino dan La Nina (BOM).</p>
   </a>
 
 </div>
@@ -207,12 +204,12 @@ body {
 </div>
 
 <script>
-// (Script JavaScript tetap sama seperti sebelumnya)
+// Logic Geolocation & Cuaca tetap sama
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, errorLocation);
   } else {
-    document.getElementById("lokasi").innerText = "Tidak didukung";
+    document.getElementById("lokasi").innerText = "GPS Mati";
   }
 }
 
@@ -224,23 +221,15 @@ function showPosition(position) {
 }
 
 function errorLocation() {
-  document.getElementById("lokasi").innerText = "Izin ditolak";
-  document.getElementById("cuaca").innerText = "Tidak tersedia";
-  document.getElementById("musim").innerText = "Tidak diketahui";
+  document.getElementById("lokasi").innerText = "Izin Ditolak";
 }
 
 function getMusim(data) {
   let bulan = new Date().getMonth() + 1;
   let kelembapan = data.main.humidity;
-  let kondisi = data.weather[0].main.toLowerCase();
-
-  if (kondisi.includes("rain") || kelembapan > 80) {
-    return "Musim Hujan (MH)";
-  } else if (kelembapan < 60 && (bulan >= 5 && bulan <= 9)) {
-    return "Musim Kemarau (MK)";
-  } else {
-    return "Pancaroba";
-  }
+  if (kelembapan > 75) return "Musim Hujan (MH)";
+  if (kelembapan < 65 && (bulan >= 5 && bulan <= 9)) return "Musim Kemarau (MK)";
+  return "Pancaroba";
 }
 
 function getCuaca(lat, lon) {
@@ -250,24 +239,15 @@ function getCuaca(lat, lon) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      if (data.cod !== 200) {
-        document.getElementById("cuaca").innerText = "Error API";
-        return;
-      }
-      let cuaca = data.weather[0].description;
-      let suhu = data.main.temp;
-      document.getElementById("cuaca").innerText = cuaca + " (" + suhu + "°C)";
+      document.getElementById("cuaca").innerText = data.weather[0].description + " (" + data.main.temp + "°C)";
       document.getElementById("musim").innerText = getMusim(data);
     })
-    .catch(err => {
-      document.getElementById("cuaca").innerText = "Gagal";
-      document.getElementById("musim").innerText = "Error";
+    .catch(() => {
+      document.getElementById("cuaca").innerText = "Offline";
     });
 }
 
-window.onload = function () {
-  getLocation();
-};
+window.onload = getLocation;
 </script>
 
 </body>
