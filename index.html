@@ -2,212 +2,222 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PPL TOOLS - Indonesia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>PPL DIGITAL TOOLS - Indonesia</title>
 
 <style>
+/* ANIMASI BINGKAI MENYALA */
+@keyframes borderGlow {
+  0% { border-color: #81c784; box-shadow: 0 0 10px rgba(129, 199, 132, 0.3); }
+  50% { border-color: #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.4); }
+  100% { border-color: #81c784; box-shadow: 0 0 10px rgba(129, 199, 132, 0.3); }
+}
+
 :root {
   --primary: #81c784;
   --bg-dark: #121212;
   --card-dark: #1e1e1e;
   --text-main: #e0e0e0;
   --text-muted: #b0b0b0;
-  --accent-green: #2e7d32;
 }
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background-color: var(--bg-dark);
+  background: radial-gradient(circle at center, #1b5e20, #121212 60%);
   color: var(--text-main);
   margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Pas di layar */
+  width: 100vw;
+  overflow: hidden;
+}
+
+.app-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
+  max-width: 420px;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 /* HEADER */
 .header {
   text-align: center;
-  padding: 40px 20px;
-  width: 100%;
-  background: linear-gradient(180deg, #1b5e20, #121212);
+  flex: 0 0 auto;
 }
 
-.header h1 {
-  margin: 0;
-  color: white;
-}
+.header h1 { margin: 2px; font-size: 18px; color: white; }
+.header p { margin: 2px 0; font-size: 11px; color: var(--primary); }
 
-.header p {
-  color: var(--primary);
-}
-
-/* DASHBOARD */
 .dashboard {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 5px;
   justify-content: center;
-  margin-top: 15px;
-}
-
-.badge {
-  background: var(--primary);
-  color: black;
-  padding: 6px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: bold;
-}
-
-/* MENU GRID */
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 900px;
-  width: 90%;
-  padding: 20px;
-}
-
-/* TOMBOL UTAMA LCS (PENGGANTI MENU) */
-.lcs-btn {
-  grid-column: 1 / -1;
-  background: linear-gradient(90deg, #2e7d32, #1b5e20);
-  padding: 20px;
-  border-radius: 15px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  border: 1px solid var(--primary);
-  transition: 0.3s;
-  display: flex;
-  flex-direction: column; /* Membuat teks di bawah ikon */
-  align-items: center;
-  gap: 8px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  animation: fade 0.6s forwards;
-}
-
-.lcs-btn:hover {
-  background: var(--primary);
-  color: #121212;
-  transform: scale(1.02);
-}
-
-.lcs-btn small {
-  font-weight: normal;
-  font-size: 0.8rem;
-  opacity: 0.9;
-}
-
-/* ITEM MENU BIASA */
-.menu-item {
-  background: var(--card-dark);
-  padding: 25px;
-  border-radius: 15px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  border: 1px solid #333;
-  transition: 0.3s;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fade 0.6s forwards;
-}
-
-.menu-item:hover {
-  transform: translateY(-8px);
-  border-color: var(--primary);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-}
-
-.icon {
-  font-size: 30px;
-  margin-bottom: 10px;
-}
-
-.menu-item h3 {
-  color: var(--primary);
   margin: 10px 0;
 }
 
-.menu-item p {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin: 0;
+.badge {
+  background: rgba(129,199,132,0.2);
+  color: var(--primary);
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 9px;
+  font-weight: bold;
+  border: 1px solid var(--primary);
 }
 
-@keyframes fade {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* GRID SISTEM */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 Kolom Horisontal */
+  gap: 8px;
+  flex: 1 1 auto;
+  align-content: center;
 }
 
-/* FOOTER */
-.footer {
-  padding: 30px;
-  font-size: 0.8rem;
-  color: #666;
+/* MENU EVIDEN LCS (PALING ATAS - FULL) */
+.lcs-btn {
+  grid-column: span 2;
+  background: linear-gradient(90deg, #b80d15, #f70713);
+  padding: 12px;
+  border-radius: 12px;
   text-align: center;
-  line-height: 1.5;
+  text-decoration: none;
+  color: white;
+  border: 1.5px solid var(--primary);
+  animation: borderGlow 5s infinite linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* MENU WEB BPP (PALING BAWAH - FULL) */
+.web-btn {
+  grid-column: span 2;
+  background: #062b38;
+  padding: 12px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  border: 1.5px solid var(--primary);
+  animation: borderGlow 5s infinite linear;
+}
+
+/* ITEM MENU 2x4 */
+.menu-item {
+  background: #040224;
+  padding: 10px 5px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  border: 1.5px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fade 0.5s forwards, borderGlow 5s infinite linear;
+}
+
+.icon { font-size: 20px; margin-bottom: 3px; }
+.menu-item h3 { font-size: 10px; margin: 0; font-weight: 600; line-height: 1.2; }
+
+@keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.footer {
+  text-align: center;
+  font-size: 9px;
+  padding: 10px 0;
+  color: var(--text-muted);
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  <h1>🧑‍💻PPL DIGITAL TOOLS</h1>
-  <p>Pelaporan, perencanaan hingga panen dalam satu aplikasi</p>
+<div class="app-container">
+  <div class="header">
+    <h1>🧑‍💻 PPL DIGITAL TOOLS</h1>
+    <p>Pelaporan, Perencanaan hingga Panen</p>
 
-  <div class="dashboard">
-    <div class="badge">🌦️ <span id="cuaca">Loading...</span></div>
-    <div class="badge">📍 <span id="lokasi">Loading...</span></div>
-    <div class="badge">📅 <span id="musim">Loading...</span></div>
+    <div class="dashboard">
+      <div class="badge">🌦️ <span id="cuaca">...</span></div>
+      <div class="badge">📍 <span id="lokasi">...</span></div>
+      <div class="badge">📅 <span id="musim">...</span></div>
+    </div>
   </div>
+
+  <div class="menu-grid">
+    <a href="https://mamank757.github.io/LCS/" class="lcs-btn">
+      <div class="icon">📝</div>
+      <div style="text-align: center;">
+        <div style="font-size: 15px; font-weight: bold;">LAPORAN EVIDEN LCS PENYULUH</div>
+        <div style="font-size: 12px; opacity: 0,8;">Sistem Pembuat Laporan Cepat</div>
+      </div>
+    </a>
+
+       <a href="https://mamank757.github.io/padi" class="menu-item">
+      <div class="icon">🌾</div><h3>Kalkulator Fase Padi</h3>
+    </a>
+    
+    <a href="https://mamank757.github.io/dosis" class="menu-item">
+      <div class="icon">🧪</div><h3>Kalkulator Dosis Pupuk ERDKK</h3>
+    </a>
+
+    <a href="https://mamank757.github.io/hamatikus" class="menu-item">
+      <div class="icon">🐭</div><h3>Simulasi Serangan Tikus</h3>
+    </a>
+    <a href="https://mamank757.github.io/jadwalhamatikus" class="menu-item">
+      <div class="icon">📅</div><h3>Jadwal Pengendalian Tikus</h3>
+    </a>
+
+    <a href="https://mamank757.github.io/hamapenggerek" class="menu-item">
+      <div class="icon">🐛</div><h3>Simulasi Serangan Penggerek</h3>
+    </a>
+    <a href="https://mamank757.github.io/jadwalhamapenggerek" class="menu-item">
+      <div class="icon">🦋</div><h3>Jadwal Kendali Penggerek</h3>
+    </a>
+
+         <a href="https://mamank757.github.io/analisis/" class="menu-item">
+      <div class="icon">📈</div><h3>Analisis Usaha Tani</h3>
+    </a>
+    <a href="https://mamank757.github.io/iklim" class="menu-item">
+      <div class="icon">🌍</div><h3>Data Iklim & Cuaca</h3>
+    </a>
+
+    <a href="https://www.bppbola.my.id" class="web-btn">
+      <div class="icon">🌐</div>
+      <div style="font-size: 11px; font-weight: bold;">WEB BPP BOLA - KAB. WAJO - PROV. SULSEL</div>
+    </a>
+  </div>
+ </div>
+ <footer style="
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 0px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: #1e1e1e;
+  border-top: 1px solid #f4b800;
+">
+  <div class="footer">
+  © 2026 Dibuat oleh:<br>
+  <strong>King Mamank</strong> • PPL BPP Bola - Kab. Wajo - Sulsel
 </div>
-
-<div class="menu-grid">
-
-  <a href="https://mamank757.github.io/LCS/" class="lcs-btn">
-    <div class="icon">📝</div>
-    <span>LAPORAN EVIDEN LCS PENYULUH</span>
-    <small>Klik untuk akses cepat sistem pelaporan</small>
-  </a>
-
-  <a href="https://mamank757.github.io/padi" class="menu-item" style="animation-delay: 0.1s;">
-    <div class="icon">🌾</div>
-    <h3>Kalkulator Fase Padi</h3>
-    <p>Pantau jadwal pemupukan & panen.</p>
-  </a>
-
-  <a href="https://mamank757.github.io/dosis" class="menu-item" style="animation-delay: 0.2s;">
-    <div class="icon">🧪</div>
-    <h3>Kalkulator Dosis Pupuk</h3>
-    <p>Hitung kebutuhan pupuk nasional.</p>
-  </a>
-
-  <a href="https://mamank757.github.io/iklim" class="menu-item" style="animation-delay: 0.3s;">
-    <div class="icon">🌍</div>
-    <h3>Data Iklim & Cuaca</h3>
-    <p>Analisis El Nino dan La Nina (BOM).</p>
-  </a>
-
-</div>
-
-<div class="footer">
-  © 2026 Dibuat oleh: <br>
-  <strong>King Mamank</strong> • PPL Bola - Kab. Wajo
-</div>
-
+</footer>
 <script>
-// Logic Geolocation & Cuaca tetap sama
 function getLocation() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, errorLocation);
+    navigator.geolocation.getCurrentPosition(showPosition, () => document.getElementById("lokasi").innerText = "Wajo");
   } else {
     document.getElementById("lokasi").innerText = "GPS Mati";
   }
@@ -220,31 +230,13 @@ function showPosition(position) {
   getCuaca(lat, lon);
 }
 
-function errorLocation() {
-  document.getElementById("lokasi").innerText = "Izin Ditolak";
-}
-
-function getMusim(data) {
-  let bulan = new Date().getMonth() + 1;
-  let kelembapan = data.main.humidity;
-  if (kelembapan > 75) return "Musim Hujan (MH)";
-  if (kelembapan < 65 && (bulan >= 5 && bulan <= 9)) return "Musim Kemarau (MK)";
-  return "Pancaroba";
-}
-
 function getCuaca(lat, lon) {
   let apiKey = "a6da7e4d60b79f9bc5e5a35f7ccc5885";
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=id`;
-
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("cuaca").innerText = data.weather[0].description + " (" + data.main.temp + "°C)";
-      document.getElementById("musim").innerText = getMusim(data);
-    })
-    .catch(() => {
-      document.getElementById("cuaca").innerText = "Offline";
-    });
+  fetch(url).then(res => res.json()).then(data => {
+    document.getElementById("cuaca").innerText = data.main.temp + "°C";
+    document.getElementById("musim").innerText = (data.main.humidity > 70) ? "MH" : "MK";
+  }).catch(() => document.getElementById("cuaca").innerText = "Offline");
 }
 
 window.onload = getLocation;
