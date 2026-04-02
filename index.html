@@ -1,273 +1,278 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>PPL DIGITAL TOOLS - Indonesia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PPL DIGITAL TOOLS - Indonesia</title>
 
-<style>
-/* ANIMASI BINGKAI MENYALA */
-@keyframes borderGlow {
-  0% { border-color: #81c784; box-shadow: 0 0 10px rgba(129, 199, 132, 0.3); }
-  50% { border-color: #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.4); }
-  100% { border-color: #81c784; box-shadow: 0 0 10px rgba(129, 199, 132, 0.3); }
-}
+    <style>
+        /* ANIMASI BINGKAI MENYALA */
+        @keyframes borderGlow {
+            0% { border-color: #81c784; box-shadow: 0 0 10px rgba(129, 199, 132, 0.3); }
+            50% { border-color: #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.4); }
+            100% { border-color: #81c784; box-shadow: 0 0 10px rgba(129, 199, 132, 0.3); }
+        }
 
-:root {
-  --primary: #81c784;
-  --bg-dark: #121212;
-  --text-main: #e0e0e0;
-  --text-muted: #b0b0b0;
-  --blue-light: #4fc3f7;
-}
+        :root {
+            --primary: #81c784;
+            --bg-dark: #121212;
+            --text-main: #e0e0e0;
+            --text-muted: #b0b0b0;
+            --blue-light: #4fc3f7;
+        }
 
-body {
-  font-family: 'Segoe UI', sans-serif;
-  background: radial-gradient(circle at center, #1b5e20, #121212 60%);
-  color: var(--text-main);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
-}
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at center, #1b5e20, #121212 60%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+        }
 
-.app-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 420px;
-  min-height: 100vh;
-  padding: 10px;
-  box-sizing: border-box;
-}
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 420px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
 
-/* HEADER */
-.header {
-  text-align: center;
-  flex: 0 0 auto;
-  padding-bottom: 10px;
-}
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding-bottom: 10px;
+        }
 
-.header h1 { margin: 2px; font-size: 18px; color: white; }
-.header p { margin: 0; font-size: 11px; color: var(--primary); }
+        .header h1 { margin: 2px; font-size: 18px; color: white; }
+        .header p { margin: 0; font-size: 11px; color: var(--primary); }
 
-.dashboard {
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-  margin: 8px 0;
-}
+        .dashboard {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin: 8px 0;
+        }
 
-.badge {
-  background: rgba(129,199,132,0.2);
-  color: var(--primary);
-  padding: 4px 10px;
-  border-radius: 10px;
-  font-size: 9px;
-  font-weight: bold;
-  border: 1px solid var(--primary);
-}
+        .badge {
+            background: rgba(129,199,132,0.2);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: bold;
+            border: 1px solid var(--primary);
+        }
 
-.download-app-btn {
-  display: block;
-  background: var(--blue-light);
-  color: #000;
-  text-align: center;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 11px;
-  padding: 10px;
-  border-radius: 20px;
-  margin: 5px auto 10px auto;
-  width: 90%;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  border: 1px solid white;
-}
+        .download-app-btn {
+            display: block;
+            background: var(--blue-light);
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 11px;
+            padding: 10px;
+            border-radius: 20px;
+            margin: 5px auto 15px auto;
+            width: 90%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 1px solid white;
+        }
 
-/* GRID SISTEM */
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  flex: 1 0 auto;
-  align-content: start;
-  padding-bottom: 30px; /* Jarak agar tidak mepet footer */
-}
+        /* GRID SISTEM */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            align-content: start;
+            /* PENTING: Jarak bawah agar menu tidak tertutup footer fixed */
+            padding-bottom: 120px; 
+        }
 
-.lcs-btn {
-  grid-column: span 2;
-  background: linear-gradient(90deg, #b80d15, #f70713);
-  padding: 15px;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  border: 1.5px solid var(--primary);
-  animation: borderGlow 5s infinite linear;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
+        .lcs-btn {
+            grid-column: span 2;
+            background: linear-gradient(90deg, #b80d15, #f70713);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border: 1.5px solid var(--primary);
+            animation: borderGlow 5s infinite linear;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
 
-.web-btn {
-  grid-column: span 2;
-  background: #062b38;
-  padding: 12px;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  border: 1.5px solid var(--primary);
-  animation: borderGlow 5s infinite linear;
-}
+        .web-btn {
+            grid-column: span 2;
+            background: #062b38;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border: 1.5px solid var(--primary);
+            animation: borderGlow 5s infinite linear;
+        }
 
-.menu-item {
-  background: #040224;
-  padding: 12px 5px;
-  border-radius: 12px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  border: 1.5px solid var(--primary);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  animation: fade 0.5s forwards, borderGlow 5s infinite linear;
-}
+        .menu-item {
+            background: #040224;
+            padding: 12px 5px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border: 1.5px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: fade 0.5s forwards, borderGlow 5s infinite linear;
+        }
 
-.icon { font-size: 22px; margin-bottom: 5px; }
-.menu-item h3 { font-size: 10.5px; margin: 0; font-weight: 600; line-height: 1.2; }
+        .icon { font-size: 22px; margin-bottom: 5px; }
+        .menu-item h3 { font-size: 10.5px; margin: 0; font-weight: 600; line-height: 1.2; }
 
-@keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* --- FOOTER FIX --- */
-.footer-container {
-  flex-shrink: 0;
-  text-align: center;
-  margin-top: 20px;
-}
+        /* FOOTER FIXED & FULL WIDTH */
+        .footer-fixed-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background: #1e1e1e;
+            text-align: center;
+            box-shadow: 0 -3px 15px rgba(0,0,0,0.6);
+        }
 
-.flagcounter-box {
-  margin-bottom: 10px;
-}
+        .flag-box {
+            padding: 6px 0;
+            background: rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(129,199,132,0.2);
+            display: flex;
+            justify-content: center;
+        }
 
-.main-footer {
-  background: #1e1e1e;
-  border-top: 2px solid #f4b800;
-  padding: 12px 10px;
-  font-size: 10px;
-  color: var(--text-muted);
-  line-height: 1.4;
-}
+        .credit-box {
+            padding: 10px 5px;
+            font-size: 10px;
+            color: var(--text-muted);
+            border-top: 2px solid #f4b800;
+        }
 
-.main-footer strong {
-  color: #fff;
-}
-</style>
+        .credit-box strong {
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
 
 <div class="app-container">
-  <div class="header">
-    <h1>🧑‍💻 PPL DIGITAL TOOLS</h1>
-    <p>Pelaporan, Perencanaan hingga Panen</p>
+    <div class="header">
+        <h1>🧑‍💻 PPL DIGITAL TOOLS</h1>
+        <p>Pelaporan, Perencanaan hingga Panen</p>
 
-    <div class="dashboard">
-      <div class="badge">🌦️ <span id="cuaca">...</span></div>
-      <div class="badge">📍 <span id="lokasi">...</span></div>
-      <div class="badge">📅 <span id="musim">...</span></div>
+        <div class="dashboard">
+            <div class="badge">🌦️ <span id="cuaca">...</span></div>
+            <div class="badge">📍 <span id="lokasi">...</span></div>
+            <div class="badge">📅 <span id="musim">...</span></div>
+        </div>
+
+        <a href="https://drive.google.com/file/d/1pbiz8LTIF0IatO3sX3Kl7idGe58MRT09/view?usp=drive_link" target="_blank" class="download-app-btn">
+            📲 Download versi App Androidnya Di Sini!
+        </a>
     </div>
 
-    <a href="https://drive.google.com/file/d/1pbiz8LTIF0IatO3sX3Kl7idGe58MRT09/view?usp=drive_link" target="_blank" class="download-app-btn">
-      📲 Download versi App Androidnya Di Sini!
-    </a>
-  </div>
+    <div class="menu-grid">
+        <a href="https://mamank757.github.io/LCS/" class="lcs-btn">
+            <div class="icon">📝</div>
+            <div style="text-align: left;">
+                <div style="font-size: 14px; font-weight: bold;">LAPORAN EVIDEN LCS</div>
+                <div style="font-size: 10px; opacity: 0.9;">Sistem Pembuat Laporan Cepat</div>
+            </div>
+        </a>
 
-  <div class="menu-grid">
-    <a href="https://mamank757.github.io/LCS/" class="lcs-btn">
-      <div class="icon">📝</div>
-      <div style="text-align: left;">
-        <div style="font-size: 14px; font-weight: bold;">LAPORAN EVIDEN LCS</div>
-        <div style="font-size: 10px; opacity: 0.9;">Sistem Pembuat Laporan Cepat</div>
-      </div>
-    </a>
+        <a href="https://mamank757.github.io/padi" class="menu-item">
+            <div class="icon">🌾</div><h3>Kalkulator Fase Padi</h3>
+        </a>
+        
+        <a href="https://mamank757.github.io/dosis" class="menu-item">
+            <div class="icon">🧪</div><h3>Dosis Pupuk ERDKK</h3>
+        </a>
 
-    <a href="https://mamank757.github.io/padi" class="menu-item">
-      <div class="icon">🌾</div><h3>Kalkulator Fase Padi</h3>
-    </a>
-    
-    <a href="https://mamank757.github.io/dosis" class="menu-item">
-      <div class="icon">🧪</div><h3>Dosis Pupuk ERDKK</h3>
-    </a>
+        <a href="https://mamank757.github.io/hamatikus" class="menu-item">
+            <div class="icon">🐭</div><h3>Simulasi Tikus</h3>
+        </a>
+        <a href="https://mamank757.github.io/jadwalhamatikus" class="menu-item">
+            <div class="icon">📅</div><h3>Jadwal Tikus</h3>
+        </a>
 
-    <a href="https://mamank757.github.io/hamatikus" class="menu-item">
-      <div class="icon">🐭</div><h3>Simulasi Tikus</h3>
-    </a>
-    <a href="https://mamank757.github.io/jadwalhamatikus" class="menu-item">
-      <div class="icon">📅</div><h3>Jadwal Tikus</h3>
-    </a>
+        <a href="https://mamank757.github.io/hamapenggerek" class="menu-item">
+            <div class="icon">🐛</div><h3>Simulasi Penggerek</h3>
+        </a>
+        <a href="https://mamank757.github.io/jadwalhamapenggerek" class="menu-item">
+            <div class="icon">🦋</div><h3>Jadwal Penggerek</h3>
+        </a>
 
-    <a href="https://mamank757.github.io/hamapenggerek" class="menu-item">
-      <div class="icon">🐛</div><h3>Simulasi Penggerek</h3>
-    </a>
-    <a href="https://mamank757.github.io/jadwalhamapenggerek" class="menu-item">
-      <div class="icon">🦋</div><h3>Jadwal Penggerek</h3>
-    </a>
+        <a href="https://mamank757.github.io/analisis/" class="menu-item">
+            <div class="icon">📈</div><h3>Analisis Usaha</h3>
+        </a>
+        <a href="https://mamank757.github.io/iklim" class="menu-item">
+            <div class="icon">🌍</div><h3>Data Iklim</h3>
+        </a>
 
-    <a href="https://mamank757.github.io/analisis/" class="menu-item">
-      <div class="icon">📈</div><h3>Analisis Usaha</h3>
-    </a>
-    <a href="https://mamank757.github.io/iklim" class="menu-item">
-      <div class="icon">🌍</div><h3>Data Iklim</h3>
-    </a>
-
-    <a href="https://www.bppbola.my.id" class="web-btn">
-      <div class="icon">🌐</div>
-      <div style="font-size: 11px; font-weight: bold;">WEB BPP BOLA - KAB. WAJO</div>
-    </a>
-  </div>
-
-  <footer class="footer-container">
-    <div class="flagcounter-box">
-      <a href="https://info.flagcounter.com/Ggr6">
-        <img src="https://s01.flagcounter.com/mini/Ggr6/bg_FFFFFF/txt_000000/border_CCCCCC/flags_0/" alt="Flag Counter" border="0">
-      </a>
+        <a href="https://www.bppbola.my.id" class="web-btn">
+            <div class="icon">🌐</div>
+            <div style="font-size: 11px; font-weight: bold;">WEB BPP BOLA - KAB. WAJO</div>
+        </a>
     </div>
-    <div class="main-footer">
-      © 2026 Dibuat oleh:<br>
-      <strong>King Mamank</strong> • PPL BPP Bola - Kab. Wajo - Sulsel
-    </div>
-  </footer>
 </div>
+
+<footer class="footer-fixed-container">
+    <div class="flag-box">
+        <a href="https://info.flagcounter.com/Ggr6">
+            <img src="https://s01.flagcounter.com/mini/Ggr6/bg_FFFFFF/txt_000000/border_CCCCCC/flags_0/" alt="Flag Counter" border="0">
+        </a>
+    </div>
+    <div class="credit-box">
+        © 2026 Dibuat oleh:<br>
+        <strong>King Mamank</strong> • PPL BPP Bola - Kab. Wajo - Sulsel
+    </div>
+</footer>
 
 <script>
 function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, () => document.getElementById("lokasi").innerText = "Wajo");
-  } else {
-    document.getElementById("lokasi").innerText = "GPS Mati";
-  }
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, () => document.getElementById("lokasi").innerText = "Wajo");
+    } else {
+        document.getElementById("lokasi").innerText = "GPS Mati";
+    }
 }
 
 function showPosition(position) {
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  document.getElementById("lokasi").innerText = lat.toFixed(2) + ", " + lon.toFixed(2);
-  getCuaca(lat, lon);
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    document.getElementById("lokasi").innerText = lat.toFixed(2) + ", " + lon.toFixed(2);
+    getCuaca(lat, lon);
 }
 
 function getCuaca(lat, lon) {
-  let apiKey = "a6da7e4d60b79f9bc5e5a35f7ccc5885";
-  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=id`;
-  fetch(url).then(res => res.json()).then(data => {
-    document.getElementById("cuaca").innerText = Math.round(data.main.temp) + "°C";
-    document.getElementById("musim").innerText = (data.main.humidity > 70) ? "MH" : "MK";
-  }).catch(() => document.getElementById("cuaca").innerText = "Offline");
+    let apiKey = "a6da7e4d60b79f9bc5e5a35f7ccc5885";
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=id`;
+    fetch(url).then(res => res.json()).then(data => {
+        document.getElementById("cuaca").innerText = Math.round(data.main.temp) + "°C";
+        document.getElementById("musim").innerText = (data.main.humidity > 70) ? "MH" : "MK";
+    }).catch(() => document.getElementById("cuaca").innerText = "Offline");
 }
 
 window.onload = getLocation;
