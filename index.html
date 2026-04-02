@@ -52,34 +52,24 @@ body {
 }
 
 .header h1 { margin: 2px; font-size: 18px; color: white; }
-.header p { margin: 2px 0; font-size: 11px; color: var(--primary); }
+.header p { margin: 0; font-size: 11px; color: var(--primary); } /* Jarak p dikurangi */
 
 .dashboard {
   display: flex;
   gap: 5px;
   justify-content: center;
-  margin: 10px 0;
-}
-
-.badge {
-  background: rgba(129,199,132,0.2);
-  color: var(--primary);
-  padding: 4px 8px;
-  border-radius: 10px;
-  font-size: 9px;
-  font-weight: bold;
-  border: 1px solid var(--primary);
+  margin: 5px 0 0 0; /* Jarak bawah (margin-bottom) dihilangkan agar rapat ke menu */
 }
 
 /* GRID SISTEM */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 Kolom Horisontal */
+  grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   flex: 1 1 auto;
-  align-content: center;
+  align-content: start; /* Ubah dari 'center' ke 'start' agar menu naik ke atas */
+  padding-top: 5px;     /* Memberikan sedikit ruang napas agar tidak menempel sekali */
 }
-
 /* MENU EVIDEN LCS (PALING ATAS - FULL) */
 .lcs-btn {
   grid-column: span 2;
