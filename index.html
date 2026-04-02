@@ -29,8 +29,7 @@ body {
   padding: 0;
   display: flex;
   justify-content: center;
-  /* Mengubah hidden menjadi auto agar bisa di-scroll jika layar kekecilan */
-  height: 80vh;
+  height: 100vh;
   width: 100vw;
   overflow-y: auto; 
   overflow-x: hidden;
@@ -41,7 +40,7 @@ body {
   flex-direction: column;
   width: 100%;
   max-width: 420px;
-  min-height: 100vh; /* Memastikan tinggi minimal seukuran layar */
+  min-height: 100vh;
   padding: 10px;
   box-sizing: border-box;
 }
@@ -93,7 +92,7 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
-  flex: 1 0 auto; /* Biarkan grid mengambil ruang yang dibutuhkan */
+  flex: 1 0 auto;
   align-content: start;
 }
 
@@ -144,15 +143,21 @@ body {
 
 @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* FOOTER DIPERBAIKI */
+/* FOOTER */
 .footer-fixed {
   text-align: center;
   padding: 15px 0;
   font-size: 9px;
   color: var(--text-muted);
   border-top: 1px solid #f4b800;
-  margin-top: 10px;
-  flex: 0 0 auto; /* Mencegah footer menciut */
+  margin-top: 15px;
+  flex: 0 0 auto;
+}
+
+.counter-container {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
 }
 </style>
 </head>
@@ -220,6 +225,10 @@ body {
   </div>
 
   <div class="footer-fixed">
+    <div class="counter-container">
+      <a href="https://info.flagcounter.com/Ggr6"><img src="https://s01.flagcounter.com/mini/Ggr6/bg_FFFFFF/txt_000000/border_CCCCCC/flags_0/" alt="Flag Counter" border="0"></a>
+    </div>
+    
     © 2026 Dibuat oleh:<br>
     <strong>King Mamank</strong> • PPL BPP Bola - Kab. Wajo - Sulsel
   </div>
