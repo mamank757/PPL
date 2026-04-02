@@ -29,9 +29,8 @@ body {
   padding: 0;
   display: flex;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-  overflow-y: auto; 
   overflow-x: hidden;
 }
 
@@ -49,6 +48,7 @@ body {
 .header {
   text-align: center;
   flex: 0 0 auto;
+  padding-bottom: 10px;
 }
 
 .header h1 { margin: 2px; font-size: 18px; color: white; }
@@ -58,13 +58,13 @@ body {
   display: flex;
   gap: 5px;
   justify-content: center;
-  margin: 5px 0;
+  margin: 8px 0;
 }
 
 .badge {
   background: rgba(129,199,132,0.2);
   color: var(--primary);
-  padding: 2px 8px;
+  padding: 4px 10px;
   border-radius: 10px;
   font-size: 9px;
   font-weight: bold;
@@ -79,7 +79,7 @@ body {
   text-decoration: none;
   font-weight: bold;
   font-size: 11px;
-  padding: 8px;
+  padding: 10px;
   border-radius: 20px;
   margin: 5px auto 10px auto;
   width: 90%;
@@ -91,15 +91,16 @@ body {
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: 10px;
   flex: 1 0 auto;
   align-content: start;
+  padding-bottom: 30px; /* Jarak agar tidak mepet footer */
 }
 
 .lcs-btn {
   grid-column: span 2;
   background: linear-gradient(90deg, #b80d15, #f70713);
-  padding: 12px;
+  padding: 15px;
   border-radius: 12px;
   text-align: center;
   text-decoration: none;
@@ -126,7 +127,7 @@ body {
 
 .menu-item {
   background: #040224;
-  padding: 10px 5px;
+  padding: 12px 5px;
   border-radius: 12px;
   text-align: center;
   text-decoration: none;
@@ -138,26 +139,33 @@ body {
   animation: fade 0.5s forwards, borderGlow 5s infinite linear;
 }
 
-.icon { font-size: 20px; margin-bottom: 3px; }
-.menu-item h3 { font-size: 10px; margin: 0; font-weight: 600; line-height: 1.2; }
+.icon { font-size: 22px; margin-bottom: 5px; }
+.menu-item h3 { font-size: 10.5px; margin: 0; font-weight: 600; line-height: 1.2; }
 
 @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* FOOTER */
-.footer-fixed {
+/* --- FOOTER FIX --- */
+.footer-container {
+  flex-shrink: 0;
   text-align: center;
-  padding: 15px 0;
-  font-size: 9px;
-  color: var(--text-muted);
-  border-top: 1px solid #f4b800;
-  margin-top: 15px;
-  flex: 0 0 auto;
+  margin-top: 20px;
 }
 
-.counter-container {
+.flagcounter-box {
   margin-bottom: 10px;
-  display: flex;
-  justify-content: center;
+}
+
+.main-footer {
+  background: #1e1e1e;
+  border-top: 2px solid #f4b800;
+  padding: 12px 10px;
+  font-size: 10px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.main-footer strong {
+  color: #fff;
 }
 </style>
 </head>
@@ -183,9 +191,9 @@ body {
   <div class="menu-grid">
     <a href="https://mamank757.github.io/LCS/" class="lcs-btn">
       <div class="icon">📝</div>
-      <div style="text-align: center;">
-        <div style="font-size: 15px; font-weight: bold;">LAPORAN EVIDEN LCS PENYULUH</div>
-        <div style="font-size: 11px; opacity: 0.9;">Sistem Pembuat Laporan Cepat</div>
+      <div style="text-align: left;">
+        <div style="font-size: 14px; font-weight: bold;">LAPORAN EVIDEN LCS</div>
+        <div style="font-size: 10px; opacity: 0.9;">Sistem Pembuat Laporan Cepat</div>
       </div>
     </a>
 
@@ -198,24 +206,24 @@ body {
     </a>
 
     <a href="https://mamank757.github.io/hamatikus" class="menu-item">
-      <div class="icon">🐭</div><h3>Simulasi Serangan Tikus</h3>
+      <div class="icon">🐭</div><h3>Simulasi Tikus</h3>
     </a>
     <a href="https://mamank757.github.io/jadwalhamatikus" class="menu-item">
-      <div class="icon">📅</div><h3>Jadwal Pengendalian Tikus</h3>
+      <div class="icon">📅</div><h3>Jadwal Tikus</h3>
     </a>
 
     <a href="https://mamank757.github.io/hamapenggerek" class="menu-item">
-      <div class="icon">🐛</div><h3>Simulasi Serangan Penggerek</h3>
+      <div class="icon">🐛</div><h3>Simulasi Penggerek</h3>
     </a>
     <a href="https://mamank757.github.io/jadwalhamapenggerek" class="menu-item">
-      <div class="icon">🦋</div><h3>Jadwal Kendali Penggerek</h3>
+      <div class="icon">🦋</div><h3>Jadwal Penggerek</h3>
     </a>
 
     <a href="https://mamank757.github.io/analisis/" class="menu-item">
-      <div class="icon">📈</div><h3>Analisis Usaha Tani</h3>
+      <div class="icon">📈</div><h3>Analisis Usaha</h3>
     </a>
     <a href="https://mamank757.github.io/iklim" class="menu-item">
-      <div class="icon">🌍</div><h3>Data Iklim & Cuaca</h3>
+      <div class="icon">🌍</div><h3>Data Iklim</h3>
     </a>
 
     <a href="https://www.bppbola.my.id" class="web-btn">
@@ -224,14 +232,17 @@ body {
     </a>
   </div>
 
-  <div class="footer-fixed">
-    <div class="counter-container">
-      <a href="https://info.flagcounter.com/Ggr6"><img src="https://s01.flagcounter.com/mini/Ggr6/bg_FFFFFF/txt_000000/border_CCCCCC/flags_0/" alt="Flag Counter" border="0"></a>
+  <footer class="footer-container">
+    <div class="flagcounter-box">
+      <a href="https://info.flagcounter.com/Ggr6">
+        <img src="https://s01.flagcounter.com/mini/Ggr6/bg_FFFFFF/txt_000000/border_CCCCCC/flags_0/" alt="Flag Counter" border="0">
+      </a>
     </div>
-    
-    © 2026 Dibuat oleh:<br>
-    <strong>King Mamank</strong> • PPL BPP Bola - Kab. Wajo - Sulsel
-  </div>
+    <div class="main-footer">
+      © 2026 Dibuat oleh:<br>
+      <strong>King Mamank</strong> • PPL BPP Bola - Kab. Wajo - Sulsel
+    </div>
+  </footer>
 </div>
 
 <script>
@@ -254,7 +265,7 @@ function getCuaca(lat, lon) {
   let apiKey = "a6da7e4d60b79f9bc5e5a35f7ccc5885";
   let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=id`;
   fetch(url).then(res => res.json()).then(data => {
-    document.getElementById("cuaca").innerText = data.main.temp + "°C";
+    document.getElementById("cuaca").innerText = Math.round(data.main.temp) + "°C";
     document.getElementById("musim").innerText = (data.main.humidity > 70) ? "MH" : "MK";
   }).catch(() => document.getElementById("cuaca").innerText = "Offline");
 }
