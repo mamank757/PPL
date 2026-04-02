@@ -19,6 +19,7 @@
   --card-dark: #1e1e1e;
   --text-main: #e0e0e0;
   --text-muted: #b0b0b0;
+  --blue-light: #4fc3f7; /* Warna Biru Muda */
 }
 
 body {
@@ -30,7 +31,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Pas di layar */
+  height: 100vh;
   width: 100vw;
   overflow: hidden;
 }
@@ -52,13 +53,46 @@ body {
 }
 
 .header h1 { margin: 2px; font-size: 18px; color: white; }
-.header p { margin: 0; font-size: 11px; color: var(--primary); } /* Jarak p dikurangi */
+.header p { margin: 0; font-size: 11px; color: var(--primary); }
 
 .dashboard {
   display: flex;
   gap: 5px;
   justify-content: center;
-  margin: 5px 0 0 0; /* Jarak bawah (margin-bottom) dihilangkan agar rapat ke menu */
+  margin: 5px 0;
+}
+
+.badge {
+  background: rgba(129,199,132,0.2);
+  color: var(--primary);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 9px;
+  font-weight: bold;
+  border: 1px solid var(--primary);
+}
+
+/* TOMBOL DOWNLOAD BIRU MUDA */
+.download-app-btn {
+  display: block;
+  background: var(--blue-light);
+  color: #000;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 8px;
+  border-radius: 20px;
+  margin: 5px auto 10px auto;
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: 0.3s;
+  border: 1px solid white;
+}
+
+.download-app-btn:hover {
+  background: white;
+  transform: scale(1.02);
 }
 
 /* GRID SISTEM */
@@ -67,10 +101,10 @@ body {
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   flex: 1 1 auto;
-  align-content: start; /* Ubah dari 'center' ke 'start' agar menu naik ke atas */
-  padding-top: 5px;     /* Memberikan sedikit ruang napas agar tidak menempel sekali */
+  align-content: start; /* Menarik menu ke atas agar rapat */
 }
-/* MENU EVIDEN LCS (PALING ATAS - FULL) */
+
+/* MENU EVIDEN LCS */
 .lcs-btn {
   grid-column: span 2;
   background: linear-gradient(90deg, #b80d15, #f70713);
@@ -87,7 +121,6 @@ body {
   gap: 10px;
 }
 
-/* MENU WEB BPP (PALING BAWAH - FULL) */
 .web-btn {
   grid-column: span 2;
   background: #062b38;
@@ -100,7 +133,6 @@ body {
   animation: borderGlow 5s infinite linear;
 }
 
-/* ITEM MENU 2x4 */
 .menu-item {
   background: #040224;
   padding: 10px 5px;
@@ -120,11 +152,14 @@ body {
 
 @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-.footer {
+.footer-fixed {
   text-align: center;
-  font-size: 9px;
   padding: 10px 0;
+  font-size: 9px;
   color: var(--text-muted);
+  background: #1e1e1e;
+  border-top: 1px solid #f4b800;
+  width: 100%;
 }
 </style>
 </head>
@@ -141,6 +176,10 @@ body {
       <div class="badge">📍 <span id="lokasi">...</span></div>
       <div class="badge">📅 <span id="musim">...</span></div>
     </div>
+
+    <a href="https://drive.google.com/file/d/1pbiz8LTIF0IatO3sX3Kl7idGe58MRT09/view?usp=drive_link" target="_blank" class="download-app-btn">
+      📲 Download versi App Androidnya Di Sini!
+    </a>
   </div>
 
   <div class="menu-grid">
@@ -148,16 +187,16 @@ body {
       <div class="icon">📝</div>
       <div style="text-align: center;">
         <div style="font-size: 15px; font-weight: bold;">LAPORAN EVIDEN LCS PENYULUH</div>
-        <div style="font-size: 12px; opacity: 0,8;">Sistem Pembuat Laporan Cepat</div>
+        <div style="font-size: 11px; opacity: 0.9;">Sistem Pembuat Laporan Cepat</div>
       </div>
     </a>
 
-       <a href="https://mamank757.github.io/padi" class="menu-item">
+    <a href="https://mamank757.github.io/padi" class="menu-item">
       <div class="icon">🌾</div><h3>Kalkulator Fase Padi</h3>
     </a>
     
     <a href="https://mamank757.github.io/dosis" class="menu-item">
-      <div class="icon">🧪</div><h3>Kalkulator Dosis Pupuk ERDKK</h3>
+      <div class="icon">🧪</div><h3>Dosis Pupuk ERDKK</h3>
     </a>
 
     <a href="https://mamank757.github.io/hamatikus" class="menu-item">
@@ -174,7 +213,7 @@ body {
       <div class="icon">🦋</div><h3>Jadwal Kendali Penggerek</h3>
     </a>
 
-         <a href="https://mamank757.github.io/analisis/" class="menu-item">
+    <a href="https://mamank757.github.io/analisis/" class="menu-item">
       <div class="icon">📈</div><h3>Analisis Usaha Tani</h3>
     </a>
     <a href="https://mamank757.github.io/iklim" class="menu-item">
@@ -183,27 +222,16 @@ body {
 
     <a href="https://www.bppbola.my.id" class="web-btn">
       <div class="icon">🌐</div>
-      <div style="font-size: 11px; font-weight: bold;">WEB BPP BOLA - KAB. WAJO - PROV. SULSEL</div>
+      <div style="font-size: 11px; font-weight: bold;">WEB BPP BOLA - KAB. WAJO</div>
     </a>
   </div>
- </div>
- <footer style="
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  text-align: center;
-  padding: 0px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  background: #1e1e1e;
-  border-top: 1px solid #f4b800;
-">
-  <div class="footer">
-  © 2026 Dibuat oleh:<br>
-  <strong>King Mamank</strong> • PPL BPP Bola - Kab. Wajo - Sulsel
+
+  <div class="footer-fixed">
+    © 2026 Dibuat oleh:<br>
+    <strong>King Mamank</strong> • PPL BPP Bola - Kab. Wajo - Sulsel
+  </div>
 </div>
-</footer>
+
 <script>
 function getLocation() {
   if (navigator.geolocation) {
