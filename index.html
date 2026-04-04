@@ -1,230 +1,281 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Monitor Iklim - Petani Digital</title>
-<style>
-:root { 
-    --primary: #81c784; 
-    --bg-dark: #121212; 
-    --card-dark: #1e1e1e; 
-    --text-main: #e0e0e0; 
-    --blue: #64b5f6; 
-    --orange: #fb8c00; /* Warna orange ditambahkan kembali */
-    --error: #ff5252;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PPL DIGITAL TOOLS - Indonesia</title>
 
-body { 
-    font-family: 'Segoe UI', sans-serif; 
-    background-color: var(--bg-dark); 
-    color: var(--text-main); 
-    margin: 0; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    padding: 20px; 
-    padding-bottom: 100px; /* Ruang agar tidak tertutup tombol home */
-}
+    <style>
+        /* ANIMASI BINGKAI MENYALA */
+        @keyframes borderGlow {
+            0% { border-color: #81c784; box-shadow: 0 0 10px rgba(129, 199, 132, 0.3); }
+            50% { border-color: #ff9800; box-shadow: 0 0 15px rgba(255, 152, 0, 0.4); }
+            100% { border-color: #81c784; box-shadow: 0 0 10px rgba(129, 199, 132, 0.3); }
+        }
 
-/* Efek Berkedip (Glow) */
-@keyframes glowBlink {
-    0% { border-color: #333; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
-    50% { border-color: var(--primary); box-shadow: 0 0 15px rgba(129, 199, 132, 0.3); }
-    100% { border-color: #333; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
-}
+        :root {
+            --primary: #81c784;
+            --bg-dark: #121212;
+            --text-main: #e0e0e0;
+            --text-muted: #b0b0b0;
+            --blue-light: #4fc3f7;
+        }
 
-.container { 
-    max-width: 850px; 
-    width: 100%; 
-    background: var(--card-dark); 
-    border-radius: 20px; 
-    border: 2px solid #333; 
-    overflow: hidden; 
-    margin-top: 20px; 
-    animation: glowBlink 4s infinite alternate;
-}
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at center, #1b5e20, #121212 60%);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+        }
 
-.header-bar { 
-    padding: 15px; 
-    text-align: center; 
-    color: white; 
-    font-weight: bold; 
-    text-transform: uppercase;
-}
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 420px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
 
-.content { padding: 20px; text-align: center; }
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding-bottom: 10px;
+        }
 
-.grafik-img { 
-    width: 100%; 
-    height: auto; 
-    border-radius: 10px; 
-    border: 1px solid #444; 
-    min-height: 200px;
-    background: #252525;
-}
+        .header h1 { margin: 2px; font-size: 18px; color: white; }
+        .header p { margin: 0; font-size: 11px; color: var(--primary); }
 
-.btn-direct {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 12px 20px;
-    background: transparent;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: 0.3s;
-}
+        .dashboard {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin: 8px 0;
+        }
 
-.caption { 
-    text-align: left; 
-    background: #252525; 
-    padding: 15px; 
-    margin-top: 20px; 
-    border-radius: 10px; 
-    font-size: 0.9rem; 
-    line-height: 1.5; 
-}
+        .badge {
+            background: rgba(129,199,132,0.2);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 9px;
+            font-weight: bold;
+            border: 1px solid var(--primary);
+        }
 
-.btn-home { 
-    position: fixed; 
-    top: 20px; 
-    left: 20px; 
-    background: var(--primary); 
-    color: #121212; 
-    width: 55px; 
-    height: 55px; 
-    border-radius: 50%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    text-decoration: none; 
-    font-size: 26px; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
-    border: 2px solid white; 
-    z-index: 999; 
-}
-</style>
+        .download-app-btn {
+            display: block;
+            background: var(--blue-light);
+            color: #000;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 11px;
+            padding: 10px;
+            border-radius: 20px;
+            margin: 5px auto 15px auto;
+            width: 90%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 1px solid white;
+        }
+
+        /* GRID SISTEM */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            align-content: start;
+            /* PENTING: Jarak bawah agar menu tidak tertutup footer fixed */
+            padding-bottom: 120px; 
+        }
+
+        .lcs-btn {
+            grid-column: span 2;
+            background: linear-gradient(90deg, #b80d15, #f70713);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border: 1.5px solid var(--primary);
+            animation: borderGlow 5s infinite linear;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .web-btn {
+            grid-column: span 2;
+            background: #062b38;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border: 1.5px solid var(--primary);
+            animation: borderGlow 5s infinite linear;
+        }
+
+        .menu-item {
+            background: #040224;
+            padding: 12px 5px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border: 1.5px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: fade 0.5s forwards, borderGlow 5s infinite linear;
+        }
+
+        .icon { font-size: 22px; margin-bottom: 5px; }
+        .menu-item h3 { font-size: 10.5px; margin: 0; font-weight: 600; line-height: 1.2; }
+
+        @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* FOOTER FIXED & FULL WIDTH */
+        .footer-fixed-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background: #1e1e1e;
+            text-align: center;
+            box-shadow: 0 -3px 15px rgba(0,0,0,0.6);
+        }
+
+        .flag-box {
+            padding: 6px 0;
+            background: rgba(255,255,255,0.03);
+            border-top: 1px solid rgba(129,199,132,0.2);
+            display: flex;
+            justify-content: center;
+        }
+
+        .credit-box {
+            padding: 10px 5px;
+            font-size: 10px;
+            color: var(--text-muted);
+            border-top: 2px solid #f4b800;
+        }
+
+        .credit-box strong {
+            color: #fff;
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="header-bar" style="background: var(--blue);">🌍 LIVE MONITOR NINO 3.4</div>
-    <div class="content">
-     <img id="imgNino" 
-     src="https://via.placeholder.com/400x200?text=Menunggu+ENSO"
-     alt="R Nino 3.4" 
-     width="auto" 
-     height="200"
-     title="Relative Nino 3.4"
-     onerror="handleImageError(event)">
+<div class="app-container">
+    <div class="header">
+        <h1>🧑‍💻 PPL DIGITAL TOOLS</h1>
+        <p>Pelaporan, Perencanaan hingga Panen</p>
 
-        <a href="https://www.bom.gov.au/climate/ocean/outlooks/?index=nino34#tabs=Graphs" 
-           target="_blank" class="btn-direct" style="color: var(--blue); border: 1px solid var(--blue);">
-           🖼️ Buka Sumber Gambar Langsung
+        <div class="dashboard">
+            <div class="badge">🌦️ <span id="cuaca">...</span></div>
+            <div class="badge">📍 <span id="lokasi">...</span></div>
+            <div class="badge">📅 <span id="musim">...</span></div>
+        </div>
+
+        <a href="https://drive.google.com/file/d/1pbiz8LTIF0IatO3sX3Kl7idGe58MRT09/view?usp=drive_link" target="_blank" class="download-app-btn">
+            📲 Download versi App Androidnya Di Sini!
+        </a>
+    </div>
+
+    <div class="menu-grid">
+        <a href="https://mamank757.github.io/LCS/" class="lcs-btn">
+            <div class="icon">📝</div>
+            <div style="text-align: left;">
+                <div style="font-size: 14px; font-weight: bold;">LAPORAN EVIDEN LCS</div>
+                <div style="font-size: 10px; opacity: 0.9;">Sistem Pembuat Laporan Cepat</div>
+            </div>
         </a>
 
-        <div class="caption">
-            <b>Cara Membaca:</b><br>
-            • Ke arah <b>Merah (+0.8)</b>: Potensi <b>El Niño</b> (Kering).<br>
-            • Ke arah <b>Biru (-0.8)</b>: Potensi <b>La Niña</b> (Basah).
-        </div>
-    </div>
-</div>
-
-<div class="container" style="animation-delay: 0.5s; border-color: #ab47bc;">
-    <div class="header-bar" style="background: #ab47bc;">🌊 MONITOR IOD (INDIAN OCEAN DIPOLE)</div>
-    <div class="content">
-      <img id="imgIOD" 
-     src="https://via.placeholder.com/400x200?text=Menunggu+IOD"
-     alt="IOD Index"
-   width="auto" 
-     height="200"
-     title="IOD Index"
-     onerror="handleImageError(event)">
-
-        <a href="https://www.bom.gov.au/climate/ocean/outlooks/?index=iod#tabs=Graphs" 
-           target="_blank" 
-           class="btn-direct" 
-           style="color: #ab47bc; border: 1px solid #ab47bc;">
-           🖼️ Buka Sumber IOD
+        <a href="https://mamank757.github.io/padi" class="menu-item">
+            <div class="icon">🌾</div><h3>Kalkulator Fase Padi</h3>
         </a>
-
-        <div class="caption">
-            <b>Cara Membaca:</b><br>
-            • <b>IOD Positif (+)</b>: Indonesia cenderung <b>lebih kering</b><br>
-            • <b>IOD Negatif (-)</b>: Indonesia cenderung <b>lebih basah</b>
-        </div>
-    </div>
-</div>
-
-<div class="container" style="animation-delay: 1s; border-color: #ffca28;">
-    <div class="header-bar" style="background: #ffca28; color: #333;">📊 PREDIKSI CURAH HUJAN (DETERMINISTIK)</div>
-    <div class="content">
         
-        <div style="background: #252525; padding: 10px; border-radius: 10px;">
-           <img id="imgHujan" 
-     src="https://via.placeholder.com/400x200?text=Menunggu+Hujan"
-            width="400" 
-         height="300"
-                 alt="Peta Deterministik BMKG" 
-                 class="grafik-img"
-                 onerror="this.src='https://via.placeholder.com/800x500?text=Data+Sedang+Update+di+BMKG'">
-                 
-        </div>
-
-
-
-        <a href="https://www.bmkg.go.id/iklim/prediksi-hujan-bulanan/curah-hujan-deterministik" 
-           target="_blank" 
-           class="btn-direct" 
-           style="background: #ffca28; color: #333; width: 90%; border: none;">
-            📂 Buka Langsung Deterministik BMKG
+        <a href="https://mamank757.github.io/dosis" class="menu-item">
+            <div class="icon">🧪</div><h3>Dosis Pupuk ERDKK</h3>
         </a>
-                <div class="caption">
-            <b> Petunjuk:</b><br>
-            • Peta ini menunjukkan jumlah curah hujan (mm/bulan) yang diprediksi terjadi.<br>
-            • Perhatikan gradasi warna pada peta untuk melihat intensitas hujan di wilayah kita.<br>
-            • Data ini diambil langsung dari server <i>Deterministik BMKG</i>.
-        </div>
+
+        <a href="https://mamank757.github.io/hamatikus" class="menu-item">
+            <div class="icon">🐭</div><h3>Simulasi Hama Tikus</h3>
+        </a>
+        <a href="https://mamank757.github.io/jadwalhamatikus" class="menu-item">
+            <div class="icon">📅</div><h3>Jadwal Pengendalian Tikus</h3>
+        </a>
+
+        <a href="https://mamank757.github.io/hamapenggerek" class="menu-item">
+            <div class="icon">🐛</div><h3>Simulasi Hama Penggerek</h3>
+        </a>
+        <a href="https://mamank757.github.io/jadwalhamapenggerek" class="menu-item">
+            <div class="icon">🦋</div><h3>Jadwal Pengendalian Penggerek</h3>
+        </a>
+
+        <a href="https://mamank757.github.io/analisis/" class="menu-item">
+            <div class="icon">📈</div><h3>Analisis Usaha Tani</h3>
+        </a>
+        <a href="https://mamank757.github.io/iklim" class="menu-item">
+            <div class="icon">🌍</div><h3>Data Iklim El Nino - La Nina</h3>
+        </a>
+
+        <a href="https://www.bppbola.my.id" class="web-btn">
+            <div class="icon">🌐</div>
+            <div style="font-size: 11px; font-weight: bold;">WEB BPP BOLA - KAB. WAJO</div>
+        </a>
     </div>
 </div>
 
-<a href="https://mamank757.github.io/PPL" class="btn-home">🏠</a>
+<footer class="footer-fixed-container">
+    <div class="flag-box">
+        <a href="https://info.flagcounter.com/Ggr6">
+            <img src="https://s01.flagcounter.com/mini/Ggr6/bg_FFFFFF/txt_000000/border_CCCCCC/flags_0/" alt="Flag Counter" border="0">
+        </a>
+    </div>
+    <div class="credit-box">
+        © 2026 Dibuat oleh:<br>
+        <strong>King Mamank</strong> • PPL BPP Bola - Kab. Wajo - Sulsel
+    </div>
+</footer>
 
 <script>
-async function ambilDataServer() {
-    const url = "https://script.google.com/macros/s/AKfycbw58DC-q7bJ9z5ZKEruLE7XOMEPNzZBfEl-_Bs6UAf5SMn43zEKz8StgkY6IqUtV-rF/exec"; // ganti punyamu
-
-    try {
-        const res = await fetch(url + "?t=" + new Date().getTime());
-        const data = await res.json();
-
-        if (data.nino) {
-            document.getElementById("imgNino").src = data.nino;
-        }
-
-        if (data.iod) {
-            document.getElementById("imgIOD").src = data.iod;
-        }
-
-        if (data.hujan) {
-            document.getElementById("imgHujan").src = data.hujan;
-        }
-
-    } catch (err) {
-        console.log("Gagal ambil data:", err);
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, () => document.getElementById("lokasi").innerText = "Wajo");
+    } else {
+        document.getElementById("lokasi").innerText = "GPS Mati";
     }
 }
 
-// ambil pertama kali
-ambilDataServer();
-
-// refresh tiap 5 detik
-setInterval(ambilDataServer, 5000);
-    function handleImageError(event) {
-    event.target.src = "https://via.placeholder.com/400x200?text=Gagal+Load";
+function showPosition(position) {
+    let lat = position.coords.latitude;
+    let lon = position.coords.longitude;
+    document.getElementById("lokasi").innerText = lat.toFixed(2) + ", " + lon.toFixed(2);
+    getCuaca(lat, lon);
 }
+
+function getCuaca(lat, lon) {
+    let apiKey = "a6da7e4d60b79f9bc5e5a35f7ccc5885";
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=id`;
+    fetch(url).then(res => res.json()).then(data => {
+        document.getElementById("cuaca").innerText = Math.round(data.main.temp) + "°C";
+        document.getElementById("musim").innerText = (data.main.humidity > 70) ? "MH" : "MK";
+    }).catch(() => document.getElementById("cuaca").innerText = "Offline");
+}
+
+window.onload = getLocation;
 </script>
 
 </body>
