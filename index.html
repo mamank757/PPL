@@ -88,17 +88,16 @@
         /* GRID SISTEM */
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
             align-content: start;
-            /* PENTING: Jarak bawah agar menu tidak tertutup footer fixed */
-            padding-bottom: 120px; 
+            padding-bottom: 130px; 
         }
 
-        .lcs-btn {
-            grid-column: span 2;
-            background: linear-gradient(90deg, #b80d15, #f70713);
-            padding: 15px;
+        /* Menu Laporan Bertumpuk Horizontal */
+        .report-btn {
+            grid-column: span 3;
+            padding: 12px;
             border-radius: 12px;
             text-align: center;
             text-decoration: none;
@@ -109,23 +108,12 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-        }
-
-        .web-btn {
-            grid-column: span 2;
-            background: #062b38;
-            padding: 12px;
-            border-radius: 12px;
-            text-align: center;
-            text-decoration: none;
-            color: white;
-            border: 1.5px solid var(--primary);
-            animation: borderGlow 5s infinite linear;
+            margin-bottom: 2px;
         }
 
         .menu-item {
             background: #040224;
-            padding: 12px 5px;
+            padding: 10px 2px;
             border-radius: 12px;
             text-align: center;
             text-decoration: none;
@@ -137,12 +125,12 @@
             animation: fade 0.5s forwards, borderGlow 5s infinite linear;
         }
 
-        .icon { font-size: 22px; margin-bottom: 5px; }
-        .menu-item h3 { font-size: 10.5px; margin: 0; font-weight: 600; line-height: 1.2; }
+        .icon { font-size: 20px; margin-bottom: 4px; }
+        .menu-item h3 { font-size: 9px; margin: 0; font-weight: 600; line-height: 1.1; }
 
         @keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* FOOTER FIXED & FULL WIDTH */
+        /* FOOTER FIXED */
         .footer-fixed-container {
             position: fixed;
             bottom: 0;
@@ -169,9 +157,7 @@
             border-top: 2px solid #f4b800;
         }
 
-        .credit-box strong {
-            color: #fff;
-        }
+        .credit-box strong { color: #fff; }
     </style>
 </head>
 
@@ -194,46 +180,56 @@
     </div>
 
     <div class="menu-grid">
-        <a href="https://mamank757.github.io/LCS/" class="lcs-btn">
+        <a href="https://mamank757.github.io/LCS/" class="report-btn" style="background: linear-gradient(90deg, #b80d15, #f70713);">
             <div class="icon">📝</div>
             <div style="text-align: left;">
-                <div style="font-size: 14px; font-weight: bold;">LAPORAN EVIDEN LCS</div>
-                <div style="font-size: 10px; opacity: 0.9;">Sistem Pembuat Laporan Cepat</div>
+                <div style="font-size: 13px; font-weight: bold;">LAPORAN EVIDEN LCS</div>
+                <div style="font-size: 9px; opacity: 0.9;">STools Generating Laporan LCS Cepat</div>
+            </div>
+        </a>
+
+        <a href="https://mamank757.github.io/laporan" class="report-btn" style="background: linear-gradient(90deg, #1e5799, #2989d8);">
+            <div class="icon">📊</div>
+            <div style="text-align: left;">
+                <div style="font-size: 13px; font-weight: bold;">LAPORAN PENDAMPINGAN PENYULUH</div>
+                <div style="font-size: 9px; opacity: 0.9;">Tools Generating Laporan Kegiatan Pendampingan PPL</div>
             </div>
         </a>
 
         <a href="https://mamank757.github.io/padi" class="menu-item">
-            <div class="icon">🌾</div><h3>Kalkulator Fase Padi</h3>
+            <div class="icon">🌾</div><h3>Fase Pertumbuhan Padi</h3>
         </a>
         
         <a href="https://mamank757.github.io/dosis" class="menu-item">
             <div class="icon">🧪</div><h3>Dosis Pupuk ERDKK</h3>
         </a>
 
+        <a href="https://mamank757.github.io/analisis/" class="menu-item">
+            <div class="icon">📈</div><h3>Analisis Usaha Tani</h3>
+        </a>
+
         <a href="https://mamank757.github.io/hamatikus" class="menu-item">
             <div class="icon">🐭</div><h3>Simulasi Hama Tikus</h3>
         </a>
+
         <a href="https://mamank757.github.io/jadwalhamatikus" class="menu-item">
-            <div class="icon">📅</div><h3>Jadwal Pengendalian Tikus</h3>
+            <div class="icon">📅</div><h3>Jadwal P. Tikus</h3>
+        </a>
+
+        <a href="https://mamank757.github.io/iklim" class="menu-item">
+            <div class="icon">🌍</div><h3>Data Iklim/Curah Hujan</h3>
         </a>
 
         <a href="https://mamank757.github.io/hamapenggerek" class="menu-item">
             <div class="icon">🐛</div><h3>Simulasi Hama Penggerek</h3>
         </a>
+
         <a href="https://mamank757.github.io/jadwalhamapenggerek" class="menu-item">
-            <div class="icon">🦋</div><h3>Jadwal Pengendalian Penggerek</h3>
+            <div class="icon">🦋</div><h3>Jadwal P. Penggerek</h3>
         </a>
 
-        <a href="https://mamank757.github.io/analisis/" class="menu-item">
-            <div class="icon">📈</div><h3>Analisis Usaha Tani</h3>
-        </a>
-        <a href="https://mamank757.github.io/iklim" class="menu-item">
-            <div class="icon">🌍</div><h3>Data Iklim El Nino - La Nina</h3>
-        </a>
-
-        <a href="https://www.bppbola.my.id" class="web-btn">
-            <div class="icon">🌐</div>
-            <div style="font-size: 11px; font-weight: bold;">WEB BPP BOLA - KAB. WAJO</div>
+        <a href="https://www.bppbola.my.id" class="menu-item" style="background: #062b38;">
+            <div class="icon">🌐</div><h3>Web BPP Bola</h3>
         </a>
     </div>
 </div>
